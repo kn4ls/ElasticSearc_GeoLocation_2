@@ -68,6 +68,11 @@ public class TripService {
 	public Iterable<Trip> findAllTrips() {
 		return tripSearchRepository.findAll();
 	}
+	
+	@Transactional(readOnly = true)
+	public Iterable<Trip> findAllSearchTrips() {
+		return tripSearchRepository.findAll();
+	}
 
 	/*public List<Trip> findByGeoLocationSort(Double latitude, Double longitude, Integer distance, DistanceUnit unit, SortOrder order) {
 		GeoDistanceFilterBuilder filter = FilterBuilders.geoDistanceFilter("location").distance(distance, unit).lat(latitude).lon(longitude);

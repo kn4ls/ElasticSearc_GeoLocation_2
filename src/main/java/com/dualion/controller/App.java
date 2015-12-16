@@ -21,23 +21,23 @@ public class App implements ApplicationRunner {
 
 	private final Logger log = LoggerFactory.getLogger(ApplicationRunner.class);
 	
-	/*@Inject
+	@Inject
 	private TripService tripService; 
 
 	@Inject
 	private AddressService addressService;
 
 	@Inject
-	private TripAddressService tripAddressService;*/
+	private TripAddressService tripAddressService;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
 		log.info("Create Addresses:");
 		log.info("-------------------------------");
-		/*Address oficina = addressService.CreateAddress(new Address("C\\alcala", "Madrid", "España", "[40.4335419,-3.6472188000000187]"));
-		Address home_1 = addressService.CreateAddress(new Address("C\\Daniel Urrabieta", "Madrid", "España", "[40.44955971899028, -3.68666]"));
-		Address home_2 = addressService.CreateAddress(new Address("C\\Daniel Urrabieta", "Madrid", "España", "[40.44955971899028, -3.68666]"));
+		Address oficina = addressService.CreateAddress(new Address("C\\alcala", "Madrid", "España", "40.433542,-3.647218"));
+		Address home_1 = addressService.CreateAddress(new Address("C\\Daniel Urrabieta", "Madrid", "España", "40.449559,-3.68666"));
+		Address home_2 = addressService.CreateAddress(new Address("C\\Valencia", "Madrid", "España", "40.629634,-3.68666"));
 		log.info("");
 
 		log.info("Create Trips:");
@@ -66,7 +66,14 @@ public class App implements ApplicationRunner {
 		for (Trip trips : tripService.findAllTrips()) {
 			log.info(trips.toString());
 		}
-        log.info("");*/
+        log.info("");
+        
+        log.info("Trips found with findAllSearchTrips():");
+		log.info("-------------------------------");
+		for (Trip trips : tripService.findAllSearchTrips()) {
+			log.info(trips.toString());
+		}
+        log.info("");
         
         /*log.info("Trips found with findByGeoLocation():");
 		log.info("-------------------------------");

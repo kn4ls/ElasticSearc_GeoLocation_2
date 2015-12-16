@@ -23,12 +23,10 @@ public class TripAddress implements Serializable {
 
     @ManyToOne
     @JoinColumn(columnDefinition="long", name="address_id")
-    @Field(type = FieldType.Nested)
     private Address address;
 
     @ManyToOne
     @JoinColumn(columnDefinition="long", name="trip_id")
-    @Field(type = FieldType.Nested)
     private Trip trip;
 
     public TripAddress() {
@@ -77,10 +75,9 @@ public class TripAddress implements Serializable {
         return Objects.hashCode(id);
     }
 
-    @Override
-    public String toString() {
-        return "TripAddress{" +
-            "id=" + id +
-            '}';
-    }
+	@Override
+	public String toString() {
+		return "TripAddress [id=" + id + ", address=" + address + ", trip=" + trip + "]";
+	}
+
 }

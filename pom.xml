@@ -5,7 +5,7 @@
 
 	<groupId>com.dualion</groupId>
 	<artifactId>elasticsearch_test</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>ElasticSearch_GeoLocation_2</name>

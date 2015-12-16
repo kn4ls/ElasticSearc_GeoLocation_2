@@ -100,12 +100,9 @@ public class Trip {
 
 	@Override
 	public String toString() {
-		return "Trip [" +
-				"id=" + id +
-				", name=" + name +
-				", location=" +
-				", car=" + car +
-				"]";
+		return "Trip [id=" + id + ", name=" + name + ", tripAddresses=" + tripAddresses + ", car=" + car + "]";
 	}
+
+	
 	
 }

@@ -1,13 +1,17 @@
 package com.dualion.domain;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.GeoPointField;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 /**
@@ -34,6 +38,10 @@ public class Address implements Serializable {
     @Column
     @GeoPointField //Lat Lon as String
     private String location;
+    
+    @OneToMany(mappedBy = "address")
+	@Field(type = FieldType.Nested)
+	private Set<TripAddress> tripAddresses = new HashSet<>();
 
     public Address() {
     }
