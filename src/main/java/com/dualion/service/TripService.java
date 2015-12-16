@@ -17,10 +17,8 @@ import static org.elasticsearch.index.query.QueryBuilders.rangeQuery;
 
 import javax.inject.Inject;
 
-import org.elasticsearch.common.geo.GeoDistance;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.BoolFilterBuilder;
-import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.GeoDistanceFilterBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
@@ -44,7 +42,6 @@ import com.dualion.repository.search.TripSearchRepository;
 public class TripService {
 
 	private final Logger log = LoggerFactory.getLogger(TripService.class);
-	private static final Double defaultRadius = 1.0;
 
 	@Inject
 	private TripSearchRepository tripSearchRepository;
@@ -57,8 +54,9 @@ public class TripService {
 
 	@Transactional
 	public Trip createTrip(Trip trip) {
-		Trip reult = tripRepository.save(trip);
-		return tripSearchRepository.save(reult);
+		Trip result = tripRepository.save(trip);
+		if(result != null) tripSearchRepository.save(result);
+		return result;
 	}
 
 	@Transactional(readOnly = true)
@@ -71,7 +69,7 @@ public class TripService {
 		return tripSearchRepository.findAll();
 	}
 
-	public List<Trip> findByGeoLocationSort(Double latitude, Double longitude, Integer distance, DistanceUnit unit, SortOrder order) {
+	/*public List<Trip> findByGeoLocationSort(Double latitude, Double longitude, Integer distance, DistanceUnit unit, SortOrder order) {
 		GeoDistanceFilterBuilder filter = FilterBuilders.geoDistanceFilter("location").distance(distance, unit).lat(latitude).lon(longitude);
 		 
 		SearchQuery searchQuery = new NativeSearchQueryBuilder()
@@ -92,13 +90,13 @@ public class TripService {
 		return elasticsearchTemplate.queryForList(query, Trip.class);
 	}
 	
-public List<Trip> findByGeoLocation2(Double latitude, Double longitude, Integer distance,  DistanceUnit unit) {	
+	public List<Trip> findByGeoLocation2(Double latitude, Double longitude, Integer distance,  DistanceUnit unit) {
 		BoolFilterBuilder boolFilter = boolFilter()
 				.must(geoDistanceFilter("location").distance(distance, unit).point(latitude,longitude));
 		
 		return StreamSupport
 				.stream(tripSearchRepository.search(new NativeSearchQuery(matchAllQuery(), boolFilter)).spliterator(), false)
 				.collect(Collectors.toList());
-	}
+	}*/
 	
 }

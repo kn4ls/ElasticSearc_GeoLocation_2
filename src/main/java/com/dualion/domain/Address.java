@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "address")
-@Document(indexName="address", shards = 2, replicas = 0)
+@Document(indexName="address")
 public class Address implements Serializable {
 
     @Id

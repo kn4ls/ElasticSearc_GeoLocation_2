@@ -36,9 +36,8 @@ public class Trip {
 	
 	public Trip() {	}
 
-	public Trip(String name, Set<TripAddress> tripAddresses, Car car) {
+	public Trip(String name, Car car) {
 		this.name = name;
-		this.tripAddresses = tripAddresses;
 		this.car = car;
 	}
 
